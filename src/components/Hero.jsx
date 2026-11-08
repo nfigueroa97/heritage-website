@@ -29,7 +29,7 @@ export default function Hero() {
           </a>
         </div>
         <p className="hero-script brush">
-          Heritage in your
+          Heritage in your<br />
           <span>DNA</span>
         </p>
       </div>
