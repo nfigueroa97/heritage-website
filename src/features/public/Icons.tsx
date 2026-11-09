@@ -108,6 +108,13 @@ export function Icon({ name, size = 22, filled = false }: { name: string; size?:
           <path d="M3.5 10h17M8 3.5V6.5M16 3.5V6.5" />
         </>
       )}
+      {name === 'external' && <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />}
+      {name === 'tag' && (
+        <>
+          <path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7a1 1 0 0 1 .7.3l7.6 7.6a1 1 0 0 1 0 1.4l-7.7 7.7a1 1 0 0 1-1.4 0L3.8 12.9a1 1 0 0 1-.3-.7z" />
+          <circle cx="8.2" cy="8.2" r="1.3" />
+        </>
+      )}
       {name === 'arrow' && <path d="M5 12h14M13 6l6 6-6 6" />}
       {name === 'chevronLeft' && <path d="M14.5 6 8.5 12l6 6" />}
       {name === 'chevronRight' && <path d="M9.5 6l6 6-6 6" />}

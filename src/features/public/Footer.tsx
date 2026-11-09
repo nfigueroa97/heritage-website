@@ -78,15 +78,21 @@ export default function Footer() {
             ))}
           </ul>
           <div className="social" aria-label={t('social')}>
-            <span aria-hidden="true">
+          <a href={content.site.facebookUrl} target="_blank" rel="noopener noreferrer">
+          <span aria-hidden="true">
               <Icon name="facebook" size={18} />
             </span>
-            <span aria-hidden="true">
+          </a>
+          <a href={content.site.instagramUrl} target="_blank" rel="noopener noreferrer">  
+          <span aria-hidden="true">
               <Icon name="instagram" size={18} />
             </span>
-            <span aria-hidden="true">
+          </a>
+          <a href={content.site.yelpUrl} target="_blank" rel="noopener noreferrer">
+          <span aria-hidden="true">
               <Icon name="yelp" size={18} />
             </span>
+          </a>
           </div>
           <p className="footer-script brush">
             {t('footer.brush1')}

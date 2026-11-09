@@ -30,6 +30,11 @@ export const defaultContent: SiteContent = {
       'https://www.google.com/maps/dir/?api=1&destination=3082+Sheridan+St,+Las+Vegas,+NV+89102',
     googleReviewUrl:
       'https://www.google.com/maps/search/?api=1&query=Heritage+Auto+3082+Sheridan+St+Las+Vegas+NV',
+    googleReviewsUrl:
+      'https://www.google.com/maps/search/?api=1&query=Heritage+Auto+3082+Sheridan+St+Las+Vegas+NV',
+    instagramUrl: 'https://www.instagram.com/heritage_autolv/?hl=en',
+    yelpUrl: 'https://www.yelp.com/biz/heritage-auto-las-vegas',
+    facebookUrl: 'https://www.facebook.com/heritageautollc/',
     mapImage:
       'https://staticmap.openstreetmap.de/staticmap.php?center=36.150,-115.170&zoom=15&size=900x480&markers=36.150,-115.170,red-pushpin',
     mapEmbed:

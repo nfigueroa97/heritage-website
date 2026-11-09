@@ -10,5 +10,22 @@
   "leave": "Leave a Review",
   "desert": "Desert highway at sunset",
   "thanks1": "Thank you",
-  "thanks2": "for your support!"
+  "thanks2": "for your support!",
+  "eyebrow": "Customer Reviews",
+  "title1": "Real Experiences,",
+  "title2a": "Real",
+  "title2b": "Customers",
+  "mobA": "Your Feedback",
+  "mobB": "Drives Us",
+  "lede": "Find out why Las Vegas drivers trust Heritage Auto LV with their vehicles.",
+  "ledeMob": "See what Las Vegas drivers say about their experience with Heritage Auto LV.",
+  "seeAll": "See all reviews on Google",
+  "leaveGoogle": "Leave a review on Google",
+  "page": "Go to page {{n}}",
+  "promoEyebrow": "Monthly Promotions",
+  "promoTitle": "Take advantage of our promotions",
+  "promoTitleMob": "Take advantage of our deals",
+  "promoText": "Special discounts, featured services and more, every month on our Instagram.",
+  "promoTextMob": "Exclusive promotions, special services and more on our Instagram.",
+  "promoCta": "See promotions on Instagram"
 }

@@ -10,5 +10,22 @@
   "leave": "Dejar una reseña",
   "desert": "Carretera del desierto al atardecer",
   "thanks1": "Gracias",
-  "thanks2": "por tu apoyo."
+  "thanks2": "por tu apoyo.",
+  "eyebrow": "Opiniones de nuestros clientes",
+  "title1": "Experiencias Reales,",
+  "title2a": "Clientes",
+  "title2b": "Reales",
+  "mobA": "Tu Opinión Nos",
+  "mobB": "Impulsa",
+  "lede": "Descubre por qué los conductores de Las Vegas confían en Heritage Auto LV para el cuidado de sus vehículos.",
+  "ledeMob": "Descubre lo que dicen los conductores de Las Vegas sobre su experiencia con Heritage Auto LV.",
+  "seeAll": "Ver todas las reseñas en Google",
+  "leaveGoogle": "Dejar una reseña en Google",
+  "page": "Ir a la página {{n}}",
+  "promoEyebrow": "Promociones del mes",
+  "promoTitle": "Aprovecha nuestras promociones",
+  "promoTitleMob": "Aprovecha nuestras ofertas",
+  "promoText": "Descuentos especiales, servicios destacados y más, todos los meses en nuestro Instagram.",
+  "promoTextMob": "Promociones exclusivas, servicios especiales y más en nuestro Instagram.",
+  "promoCta": "Ver promociones en Instagram"
 }

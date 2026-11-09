@@ -59,6 +59,8 @@ export const contentSchema = z.object({
     hours: z.array(z.object({ days: localeSchema, time: localeSchema })),
     directions: z.string(),
     googleReviewUrl: z.string().optional(),
+    googleReviewsUrl: z.string().optional(),
+    instagramUrl: z.string().optional(),
     mapImage: z.string(),
     mapEmbed: z.string(),
     lat: z.number(),
