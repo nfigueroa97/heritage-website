@@ -1,4 +1,4 @@
-import heroPhoto from '../assets/hero4.jpg'
+import heroPhoto from '../assets/hero.jpg'
 import heroPhotoMobile from '../assets/hero2.jpeg'
 import proyectBefore from '../assets/project_before.jpg'
 import proyectAfter from '../assets/proyect_after.jpg'

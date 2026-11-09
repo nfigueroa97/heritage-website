@@ -349,8 +349,8 @@ section[id],
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: 24px;
-  align-items: center;
-  padding-top: calc(var(--header) + 28px);
+  align-items: start;
+  padding-top: calc(var(--header) + 16px);
 }
 
 .hero-copy {
@@ -2408,7 +2408,35 @@ ul.values svg {
 
   .footer-brand {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .footer-brand .logo {
+    order: -1;
+  }
+
+  .footer-script {
+    flex: none;
+    padding-left: 0;
+    border-left: 0;
+    text-align: center;
+    font-size: 40px;
+  }
+
+  .footer-follow {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-follow h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .social {
+    justify-content: center;
   }
 
   .wrap {
