@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { track } from '../../shared/analytics'
 import { useContent } from '../../shared/content/useContent'
@@ -14,17 +15,72 @@ export default function Services({
   const { t } = useTranslation('services')
   const { content, text } = useContent()
   const active = content.services.find((service) => service.id === activeId) ?? content.services[0]
+  const viewportRef = useRef<HTMLDivElement>(null)
+  const cardRefs = useRef<Array<HTMLElement | null>>([])
+  const fromScroll = useRef(false)
+
+  function scrollToService(id: string, behavior: ScrollBehavior = 'smooth') {
+    const scroller = viewportRef.current
+    const index = content.services.findIndex((service) => service.id === id)
+    const card = cardRefs.current[index]
+    if (!scroller || !card) return
+    const mobile = window.matchMedia('(max-width: 1040px)').matches
+    const left = mobile
+      ? card.offsetLeft - (scroller.clientWidth - card.offsetWidth) / 2
+      : Math.max(0, card.offsetLeft - 16)
+    scroller.scrollTo({ left, behavior })
+  }
+
+  useLayoutEffect(() => {
+    if (fromScroll.current) {
+      fromScroll.current = false
+      return
+    }
+    scrollToService(active.id, 'auto')
+    function onResize() {
+      scrollToService(active.id, 'auto')
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [active.id, content.services])
+
+  function onCarouselScroll() {
+    const scroller = viewportRef.current
+    if (!scroller || !window.matchMedia('(max-width: 1040px)').matches) return
+    const mid = scroller.scrollLeft + scroller.clientWidth / 2
+    let closest = 0
+    let best = Number.POSITIVE_INFINITY
+    cardRefs.current.forEach((card, index) => {
+      if (!card) return
+      const center = card.offsetLeft + card.offsetWidth / 2
+      const distance = Math.abs(center - mid)
+      if (distance < best) {
+        best = distance
+        closest = index
+      }
+    })
+    const next = content.services[closest]
+    if (!next || next.id === active.id) return
+    fromScroll.current = true
+    onSelect(next.id)
+  }
 
   function openService(id: string) {
     onSelect(id)
     track('service_tab', { id })
-    const target = id === 'fleet' ? 'fleet' : 'services'
-    document.getElementById(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    scrollToService(id)
+  }
+
+  function step(delta: number) {
+    const index = content.services.findIndex((service) => service.id === active.id)
+    const next = content.services[(index + delta + content.services.length) % content.services.length]
+    if (next) openService(next.id)
   }
 
   return (
     <section className="services" id="services">
       <div className="wrap">
+        <h2 className="section-title services-title">{t('title')}</h2>
         <div className="tabs" role="tablist" aria-label={t('tabs')}>
           {content.services.map((service) => (
             <button
@@ -53,12 +109,18 @@ export default function Services({
           aria-labelledby={`tab-${active.id}`}
           key={active.id}
         >
+          <button type="button" className="svc-arrow prev" aria-label={t('prev')} onClick={() => step(-1)}>
+            <Icon name="chevronLeft" size={20} />
+          </button>
+          <button type="button" className="svc-arrow next" aria-label={t('next')} onClick={() => step(1)}>
+            <Icon name="chevronRight" size={20} />
+          </button>
           <div className="feature-copy">
             <h2>{text(active.tab)}</h2>
             <p className="kicker">{text(active.kicker)}</p>
             <p>{text(active.description)}</p>
-            <a className="btn" href="#service-cards">
-              {t('view')}
+            <a className="btn" href="#contact-form" onClick={() => track('quote_click', { id: active.id })}>
+              {t('quote')}
               <Icon name="arrow" size={18} />
             </a>
           </div>
@@ -80,42 +142,52 @@ export default function Services({
 
         <div id="service-cards">
           <h2 className="section-title">{t('more')}</h2>
-          <div className="card-grid">
-            {content.services
-              .filter((service) => service.id !== 'maintenance')
-              .map((service) => (
+          <div className="svc-viewport" ref={viewportRef} onScroll={onCarouselScroll}>
+            <div className="card-grid">
+              {content.services.map((service, index) => (
                 <article
-                  className="svc-card"
+                  className={`svc-card${service.id === active.id ? ' is-active' : ''}`}
                   key={service.id}
                   id={service.id === 'fleet' ? 'fleet' : undefined}
+                  ref={(node) => {
+                    cardRefs.current[index] = node
+                  }}
+                  onClick={() => openService(service.id)}
                 >
                   <img src={service.image} alt="" />
                   <div>
                     <h3>{text(service.cardTitle)}</h3>
                     <p>{text(service.blurb)}</p>
-                    <button type="button" onClick={() => openService(service.id)}>
-                      {t('learn')}
+                    <a
+                      className="svc-quote"
+                      href="#contact-form"
+                      onClick={(event) => {
+                        event.stopPropagation()
+                        track('quote_click', { id: service.id })
+                      }}
+                    >
+                      {t('quote')}
                       <Icon name="arrow" size={16} />
-                    </button>
+                    </a>
                   </div>
                 </article>
               ))}
+            </div>
+          </div>
+          <div className="svc-dots">
+            {content.services.map((service) => (
+              <button
+                key={service.id}
+                type="button"
+                className={service.id === active.id ? 'active' : undefined}
+                aria-label={text(service.tab)}
+                onClick={() => openService(service.id)}
+              />
+            ))}
           </div>
         </div>
 
-        <aside className="specific">
-          <div className="specific-copy">
-            <h2>{t('specificTitle')}</h2>
-            <p>{t('specific')}</p>
-            <a className="btn" href="#contact">
-              {t('contact')}
-              <Icon name="arrow" size={18} />
-            </a>
-          </div>
-          <div className="specific-photo">
-            <img src={images.shop} alt={t('shop')} />
-          </div>
-        </aside>
+       
       </div>
     </section>
   )

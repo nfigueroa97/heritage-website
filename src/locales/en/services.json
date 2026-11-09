@@ -1,9 +1,12 @@
 {
+  "title": "Our Services",
   "tabs": "Service categories",
   "view": "View Services",
   "included": "Included Services",
   "more": "Additional Services",
-  "learn": "Learn More",
+  "quote": "Get a Quote",
+  "prev": "Previous service",
+  "next": "Next service",
   "specificTitle": "Need something specific?",
   "specific": "We're here to help with all your automotive needs.",
   "contact": "Contact Us",

@@ -108,7 +108,7 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className="form-panel">
+          <div className="form-panel" id="contact-form">
             <EmbedBoundary fallback={<p className="scheduler-fallback">{t('scheduler')}</p>}>
               <ShopMonkeyScheduler />
             </EmbedBoundary>
