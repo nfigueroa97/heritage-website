@@ -22,7 +22,10 @@ export default function Footer() {
       <div className="wrap footer-grid">
         <div>
           <Logo />
-          <ul className="footer-contact">
+          
+        </div>
+        <div>
+        <ul className="footer-contact">
             <li>
               <Icon name="phone" size={16} />
               <a href={content.site.phoneHref} onClick={() => track('phone_click')}>
@@ -43,19 +46,8 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div>
-          <h2>{t('footer.hours')}</h2>
-          <ul className="hours">
-            {content.site.hours.map((row) => (
-              <li key={row.days.en}>
-                <span>{text(row.days)}</span>
-                <strong>{text(row.time)}</strong>
-              </li>
-            ))}
-          </ul>
-        </div>
         <div className="footer-map">
-          <div className="map-frame mini">
+          {/* <div className="map-frame mini">
             <MapView title={t('footer.map')} />
           </div>
           <a
@@ -67,33 +59,45 @@ export default function Footer() {
           >
             {t('footer.directions')}
             <Icon name="arrow" size={16} />
-          </a>
+          </a> */}
+          <h2>{t('footer.hours')}</h2>
+          <ul className="hours">
+            {content.site.hours.map((row) => (
+              <li key={row.days.en}>
+                <span>{text(row.days)}</span>
+                <strong>{text(row.time)}</strong>
+              </li>
+            ))}
+          </ul>
+           
         </div>
         <div className="footer-links">
-          <ul>
+          {/* <ul>
             {nav.map((item) => (
               <li key={item.id}>
                 <a href={`#${item.id}`}>{item.label}</a>
               </li>
             ))}
-          </ul>
-          <div className="social" aria-label={t('social')}>
-            <span aria-hidden="true">
-              <Icon name="facebook" size={18} />
-            </span>
-            <span aria-hidden="true">
-              <Icon name="instagram" size={18} />
-            </span>
-            <span aria-hidden="true">
-              <Icon name="yelp" size={18} />
-            </span>
-          </div>
+          </ul> */}
+         
           <p className="footer-script brush">
             {t('footer.brush1')}
             <br />
             {t('footer.brush2')}
           </p>
+          <div className="social" aria-label={t('social')}>
+            <span aria-hidden="true">
+              <Icon name="facebook" size={18} href="https://www.facebook.com/heritageautollc/" />
+            </span>
+            <span aria-hidden="true">
+              <Icon name="instagram" size={18} href="https://www.instagram.com/heritage_autolv/?hl=en" />
+            </span>
+            <span aria-hidden="true">
+              <Icon name="yelp" size={18} href="https://www.yelp.com/biz/heritage-auto-las-vegas" />
+            </span>
+          </div>
         </div>
+        
       </div>
       <div className="wrap footer-copy">{t('footer.copy')}</div>
     </footer>

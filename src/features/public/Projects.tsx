@@ -4,7 +4,7 @@ import { useContent } from '../../shared/content/useContent'
 import { images } from '../../data/images'
 import { Icon } from './Icons'
 
-export default function Projects({ onSelectService }: { onSelectService: (id: string) => void }) {
+export default function Projects({ onSelectService: _onSelectService }: { onSelectService: (id: string) => void }) {
   const { t } = useTranslation('projects')
   const { content, text } = useContent()
   const [pos, setPos] = useState(52)
@@ -15,16 +15,9 @@ export default function Projects({ onSelectService }: { onSelectService: (id: st
     setPos(Math.min(100, Math.max(0, next)))
   }
 
-  function openPath(serviceId: string | null) {
-    if (serviceId) onSelectService(serviceId)
-    document.getElementById(serviceId ? 'services' : 'featured')?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    })
-  }
-
   return (
     <section className="projects" id="projects">
+      {/*
       <div className="projects-top">
         <div className="wrap">
           <p className="eyebrow">{t('eyebrow')}</p>
@@ -56,6 +49,7 @@ export default function Projects({ onSelectService }: { onSelectService: (id: st
           </div>
         </div>
       </div>
+      */}
 
       <div className="featured" id="featured">
         <div className="wrap featured-grid">
