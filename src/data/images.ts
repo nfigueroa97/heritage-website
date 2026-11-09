@@ -1,4 +1,4 @@
-import heroPhoto from '../assets/hero.jpg'
+import heroPhoto from '../assets/hero4.jpg'
 import heroPhotoMobile from '../assets/hero2.jpeg'
 import proyectBefore from '../assets/project_before.jpg'
 import proyectAfter from '../assets/proyect_after.jpg'
@@ -8,6 +8,9 @@ import collision from '../assets/collision.jpg'
 import diagnostics from '../assets/diagnostic.jpg'
 import ac from '../assets/AC.png'
 import fleet from '../assets/fleets.jpg'
+import promo1 from '../assets/promo1.png'
+import promo2 from '../assets/promo2.png'
+import promo3 from '../assets/promo3.png' 
 
 export const photo = (id: string, width = 1600) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`
@@ -30,6 +33,9 @@ export const images = {
   diagnosticsImage: diagnostics,
   acImage: ac,
   fleetImage: fleet,
+  promo1Image: promo1,
+  promo2Image: promo2,
+  promo3Image: promo3,
   // routine: photo('photo-1549317661-bd32c8ce0db2', 1200),
   // bronco: photo('photo-1533473359331-0135ef1b58bf', 1200),
   // classic: photo('photo-1494976388531-d1058494cdd8', 1200),

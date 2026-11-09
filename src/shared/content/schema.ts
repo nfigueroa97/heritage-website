@@ -61,6 +61,8 @@ export const contentSchema = z.object({
     googleReviewUrl: z.string().optional(),
     googleReviewsUrl: z.string().optional(),
     instagramUrl: z.string().optional(),
+    facebookUrl: z.string().optional(),
+    yelpUrl: z.string().optional(),
     mapImage: z.string(),
     mapEmbed: z.string(),
     lat: z.number(),

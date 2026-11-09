@@ -16,7 +16,10 @@
     "fleets": "Fleets",
     "featured": "Featured restoration"
   },
-  "menu": { "open": "Open menu", "close": "Close menu" },
+  "menu": {
+    "open": "Open menu",
+    "close": "Close menu"
+  },
   "homeLabel": "Heritage Auto, home",
   "social": "Social media",
   "primary": "Primary",
@@ -26,6 +29,8 @@
     "copy": "© 2026 Heritage Auto LV. All rights reserved.",
     "map": "Small map of Heritage Auto",
     "brush1": "Let's Get You",
-    "brush2": "Back on the Road."
+    "brush2": "Back on the Road.",
+    "menu": "Menu",
+    "follow": "Follow Us"
   }
 }

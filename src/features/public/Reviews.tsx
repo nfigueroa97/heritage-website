@@ -42,9 +42,15 @@ function InstagramPost() {
   return (
     <div className="ig-bar" aria-hidden="true">
       <span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e10600">
-          <path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3 5.5 6.2 5.5c1.9 0 3.3 1 3.8 2.2.5-1.2 1.9-2.2 3.8-2.2 3.2 0 5 3.1 3.7 6.3C19.5 16.4 12 21 12 21z" />
-        </svg>
+      <svg
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="#e10600"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+</svg>
         <Icon name="chat" size={18} />
         <Icon name="arrow" size={18} />
       </span>
@@ -184,12 +190,12 @@ export default function Reviews() {
             <span className="only-m">{t('promoTextMob')}</span>
           </p>
           <div className="promo-photos" aria-hidden="true">
-            <img className="left" src={images.brakesImage} alt="" />
+            <img className="left" src={images.promo3Image} alt="" />
             <div className="center">
-              <img src={images.performanceImage} alt="" />
+              <img src={images.promo1Image} alt="" />
               <InstagramPost />
             </div>
-            <img className="right" src={images.diagnosticsImage} alt="" />
+            <img className="right" src={images.promo2Image} alt="" />
           </div>
           <a className="btn-solid" href={content.site.instagramUrl} target="_blank" rel="noopener noreferrer">
             <Icon name="instagram" size={26} />

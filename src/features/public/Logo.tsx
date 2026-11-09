@@ -1,4 +1,4 @@
-import logo from '../../assets/heritage-logo.png'
+import logo from '../../assets/logo.svg'
 import { useTranslation } from 'react-i18next'
 
 export default function Logo({ className = '' }: { className?: string }) {

@@ -3,102 +3,76 @@ import { track } from '../../shared/analytics'
 import { useContent } from '../../shared/content/useContent'
 import { Icon } from './Icons'
 import Logo from './Logo'
-import MapView from './MapView'
 
 export default function Footer() {
   const { t } = useTranslation('common')
   const { content, text } = useContent()
   const nav = [
     { id: 'home', label: t('nav.home') },
-    { id: 'about', label: t('nav.about') },
     { id: 'services', label: t('nav.services') },
     { id: 'projects', label: t('nav.projects') },
     { id: 'reviews', label: t('nav.reviews') },
+    { id: 'about', label: t('nav.about') },
     { id: 'contact', label: t('nav.contact') },
   ]
 
   return (
     <footer className="footer">
       <div className="wrap footer-grid">
-        <div>
+        <div className="footer-brand">
           <Logo />
-          <ul className="footer-contact">
-            <li>
-              <Icon name="phone" size={16} />
-              <a href={content.site.phoneHref} onClick={() => track('phone_click')}>
-                {content.site.phone}
-              </a>
-            </li>
-            <li>
-              <Icon name="mail" size={16} />
-              <a href={content.site.emailHref}>{content.site.email}</a>
-            </li>
-            <li>
-              <Icon name="pin" size={16} />
-              <span>
-                {text(content.site.street)}
-                <br />
-                {text(content.site.city)}
-              </span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h2>{t('footer.hours')}</h2>
-          <ul className="hours">
-            {content.site.hours.map((row) => (
-              <li key={row.days.en}>
-                <span>{text(row.days)}</span>
-                <strong>{text(row.time)}</strong>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="footer-map">
-          <div className="map-frame mini">
-            <MapView title={t('footer.map')} />
-          </div>
-          <a
-            className="btn"
-            href={content.site.directions}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => track('directions_click')}
-          >
-            {t('footer.directions')}
-            <Icon name="arrow" size={16} />
-          </a>
-        </div>
-        <div className="footer-links">
-          <ul>
-            {nav.map((item) => (
-              <li key={item.id}>
-                <a href={`#${item.id}`}>{item.label}</a>
-              </li>
-            ))}
-          </ul>
-          <div className="social" aria-label={t('social')}>
-          <a href={content.site.facebookUrl} target="_blank" rel="noopener noreferrer">
-          <span aria-hidden="true">
-              <Icon name="facebook" size={18} />
-            </span>
-          </a>
-          <a href={content.site.instagramUrl} target="_blank" rel="noopener noreferrer">  
-          <span aria-hidden="true">
-              <Icon name="instagram" size={18} />
-            </span>
-          </a>
-          <a href={content.site.yelpUrl} target="_blank" rel="noopener noreferrer">
-          <span aria-hidden="true">
-              <Icon name="yelp" size={18} />
-            </span>
-          </a>
-          </div>
           <p className="footer-script brush">
             {t('footer.brush1')}
             <br />
             {t('footer.brush2')}
           </p>
+        </div>
+
+        <ul className="footer-contact">
+          <li>
+            <Icon name="pin" size={26} />
+            <span>
+              {text(content.site.street)}
+              <br />
+              {text(content.site.city)}
+            </span>
+          </li>
+          
+          {/* <li>
+            <Icon name="mail" size={26} />
+            <a href={content.site.emailHref}>{content.site.email}</a>
+          </li> */}
+          {/* <li>
+            <Icon name="phone" size={26} />
+            <a href={content.site.phoneHref} onClick={() => track('phone_click')}>
+              {content.site.phone}
+            </a>
+          </li> */}
+          <li>
+            <Icon name="clock" size={26} />
+            <span>
+              {content.site.hours.map((row) => (
+                <span key={row.days.en} className="hours-row">
+                  {text(row.days)}: {text(row.time)}
+                </span>
+              ))}
+            </span>
+          </li>
+        </ul>
+
+        <div className="footer-follow">
+          <h2>{t('footer.follow')}</h2>
+          <div className="social" aria-label={t('social')}>
+            <a className="fb" href={content.site.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <Icon name="facebook" size={10} />
+            </a>
+            <a className="ig" href={content.site.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <Icon name="instagram" size={10} />
+            </a>
+            <a className="yelp" href={content.site.yelpUrl} target="_blank" rel="noopener noreferrer" aria-label="Yelp">
+              <Icon name="yelp" size={10} />
+            </a>
+          </div>
         </div>
       </div>
       <div className="wrap footer-copy">{t('footer.copy')}</div>
