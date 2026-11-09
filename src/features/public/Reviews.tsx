@@ -86,14 +86,14 @@ export default function Reviews() {
                   {t('source', { source: review.source })}
                 </span>
               </div>
-              <time>{review.date}</time>
+              {review.date && <time>{review.date}</time>}
             </header>
             <blockquote>“{text(review.quote)}”</blockquote>
             <footer>
               <Avatar src={review.photo} name={review.name} />
               <div>
                 <strong>{review.name}</strong>
-                <span>{review.place}</span>
+                {review.place && <span>{review.place}</span>}
               </div>
             </footer>
           </article>
@@ -114,25 +114,7 @@ export default function Reviews() {
           </div>
         </div>
 
-        <h2 className="section-title">{t('more')}</h2>
-        <div className="review-grid">
-          {more.map((item) => (
-            <article key={item.id}>
-              <header>
-                <b>{item.score}</b>
-                <Stars count={item.stars} />
-              </header>
-              <p>“{text(item.quote)}”</p>
-              <footer>
-                <div>
-                  <strong>{item.name}</strong>
-                  <span>{item.place}</span>
-                </div>
-                <Icon name={item.icon} size={22} />
-              </footer>
-            </article>
-          ))}
-        </div>
+ 
 
         <div className="feedback">
           <div className="feedback-card">
@@ -141,7 +123,7 @@ export default function Reviews() {
             </span>
             <h2>{t('feedback')}</h2>
             <p>{t('feedbackText')}</p>
-            <a className="btn" href="#contact">
+            <a className="btn" href={content.site.googleReviewUrl} target="_blank" rel="noopener noreferrer">
               {t('leave')}
               <Icon name="arrow" size={18} />
             </a>
