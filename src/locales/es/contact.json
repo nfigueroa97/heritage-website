@@ -1,0 +1,21 @@
+{
+  "call": "Llámanos",
+  "visit": "Visítanos",
+  "email": "Escríbenos",
+  "emailNote": "Te respondemos pronto.",
+  "book": "Agenda una cita",
+  "title": "Programa tu servicio",
+  "text": "Usa el calendario en línea para reservar tu cita rápido y sin complicaciones.",
+  "steps": [
+    { "title": "Elige el servicio", "text": "Dinos qué necesitas." },
+    { "title": "Fecha y hora", "text": "Mira los horarios disponibles." },
+    { "title": "Datos del vehículo", "text": "Así preparamos tu visita." }
+  ],
+  "brush1": "Rápido. Fácil.",
+  "brush2": "Conveniente.",
+  "location": "Nuestra ubicación",
+  "directions": "Cómo llegar",
+  "map": "Mapa de Heritage Auto en 3082 Sheridan Street",
+  "scheduler": "El calendario no está disponible ahora. Llámanos y agendamos la visita.",
+  "hoursNote": "{{days}} {{time}}"
+}

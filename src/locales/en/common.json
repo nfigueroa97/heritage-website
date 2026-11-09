@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "reviews": "Reviews",
+    "contact": "Contact"
+  },
+  "search": {
+    "placeholder": "Search...",
+    "label": "Search services and projects",
+    "empty": "No matches",
+    "service": "Service",
+    "project": "Project",
+    "fleets": "Fleets",
+    "featured": "Featured restoration"
+  },
+  "menu": { "open": "Open menu", "close": "Close menu" },
+  "homeLabel": "Heritage Auto, home",
+  "social": "Social media",
+  "primary": "Primary",
+  "footer": {
+    "hours": "Hours",
+    "directions": "Get Directions",
+    "copy": "© 2026 Heritage Auto LV. All rights reserved.",
+    "map": "Small map of Heritage Auto",
+    "brush1": "Let's Get You",
+    "brush2": "Back on the Road."
+  }
+}

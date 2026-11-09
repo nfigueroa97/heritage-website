@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "projects": "Proyectos",
+    "reviews": "Reseñas",
+    "contact": "Contacto"
+  },
+  "search": {
+    "placeholder": "Buscar...",
+    "label": "Buscar servicios y proyectos",
+    "empty": "Sin resultados",
+    "service": "Servicio",
+    "project": "Proyecto",
+    "fleets": "Flotillas",
+    "featured": "Restauración destacada"
+  },
+  "menu": { "open": "Abrir menú", "close": "Cerrar menú" },
+  "homeLabel": "Heritage Auto, inicio",
+  "social": "Redes sociales",
+  "primary": "Principal",
+  "footer": {
+    "hours": "Horario",
+    "directions": "Cómo llegar",
+    "copy": "© 2026 Heritage Auto LV. Todos los derechos reservados.",
+    "map": "Mapa pequeño de Heritage Auto",
+    "brush1": "Te ponemos",
+    "brush2": "de nuevo en marcha."
+  }
+}

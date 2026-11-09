@@ -1,0 +1,21 @@
+{
+  "call": "Call Us",
+  "visit": "Visit Us",
+  "email": "Email Us",
+  "emailNote": "We'll get back to you soon.",
+  "book": "Book an appointment",
+  "title": "Schedule Your Service",
+  "text": "Use our online scheduler to book your appointment quickly and easily.",
+  "steps": [
+    { "title": "Select service", "text": "Choose what you need." },
+    { "title": "Pick Date & Time", "text": "See available slots." },
+    { "title": "Add vehicle info", "text": "Help us prepare for your visit." }
+  ],
+  "brush1": "Fast. Easy.",
+  "brush2": "Convenient.",
+  "location": "Our Location",
+  "directions": "Get Directions",
+  "map": "Map of Heritage Auto at 3082 Sheridan Street",
+  "scheduler": "The scheduler is unavailable right now. Call us and we will book the visit.",
+  "hoursNote": "{{days}} {{time}}"
+}
