@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { track } from '../../shared/analytics'
+// import { track } from '../../shared/analytics'
 import { useContent } from '../../shared/content/useContent'
 import { Icon } from './Icons'
 import Logo from './Logo'
@@ -7,14 +7,14 @@ import Logo from './Logo'
 export default function Footer() {
   const { t } = useTranslation('common')
   const { content, text } = useContent()
-  const nav = [
-    { id: 'home', label: t('nav.home') },
-    { id: 'services', label: t('nav.services') },
-    { id: 'projects', label: t('nav.projects') },
-    { id: 'reviews', label: t('nav.reviews') },
-    { id: 'about', label: t('nav.about') },
-    { id: 'contact', label: t('nav.contact') },
-  ]
+  // const nav = [
+  //   { id: 'home', label: t('nav.home') },
+  //   { id: 'services', label: t('nav.services') },
+  //   { id: 'projects', label: t('nav.projects') },
+  //   { id: 'reviews', label: t('nav.reviews') },
+  //   { id: 'about', label: t('nav.about') },
+  //   { id: 'contact', label: t('nav.contact') },
+  // ]
 
   return (
     <footer className="footer">

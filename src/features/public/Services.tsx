@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { track } from '../../shared/analytics'
 import { useContent } from '../../shared/content/useContent'
-import { images } from '../../data/images'
+// import { images } from '../../data/images'
 import { Icon } from './Icons'
 
 export default function Services({
