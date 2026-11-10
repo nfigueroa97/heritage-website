@@ -37,11 +37,11 @@ export function Seo() {
     setMeta('og:url', url, true)
     setMeta('og:site_name', 'Heritage Auto LV', true)
     setMeta('og:locale', locale === 'es' ? 'es_US' : 'en_US', true)
-    setMeta('og:image', `${window.location.origin}/og-image.jpg`, true)
+    setMeta('og:image', `${window.location.origin}/og-logo.png`, true)
     setMeta('twitter:card', 'summary_large_image')
     setMeta('twitter:title', title)
     setMeta('twitter:description', description)
-    setMeta('twitter:image', `${window.location.origin}/og-image.jpg`)
+    setMeta('twitter:image', `${window.location.origin}/og-logo.png`)
     let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')
     if (!canonical) {
       canonical = document.createElement('link')
@@ -57,7 +57,7 @@ export function Seo() {
       telephone: site.phone,
       email: site.email,
       url,
-      image: `${window.location.origin}/og-image.jpg`,
+      image: `${window.location.origin}/og-logo.png`,
       logo: `${window.location.origin}/logo.svg`,
       sameAs: [site.facebookUrl, site.instagramUrl, site.yelpUrl].filter(Boolean),
       address: {
