@@ -357,6 +357,21 @@ section[id],
   min-width: 0;
 }
 
+@media (min-width: 881px) {
+  .hero-content {
+    /* Texts sit at mid-height; the wider the screen, the more they rise toward the top. */
+    padding-bottom: clamp(0px, calc((100vw - 880px) * 0.3), 260px);
+  }
+
+  .hero-copy {
+    align-self: center;
+  }
+
+  .hero-script {
+    align-self: center;
+  }
+}
+
 .hero h1 {
   font-size: clamp(38px, 6.4vw, 84px);
 }
@@ -783,6 +798,8 @@ ul.values svg {
 .feature {
   position: relative;
   margin: 28px 0 18px;
+  /* gutters keep the slide arrows beside the content, never over the text */
+  padding: 0 60px;
 }
 
 .svc-arrow {
@@ -803,11 +820,11 @@ ul.values svg {
 }
 
 .svc-arrow.prev {
-  left: -6px;
+  left: 0;
 }
 
 .svc-arrow.next {
-  right: -6px;
+  right: 0;
 }
 
 .feature-copy h2 {
@@ -833,24 +850,24 @@ ul.values svg {
 
 .feature-visual img {
   width: 100%;
-  height: 420px;
+  height: 320px;
   object-fit: cover;
 }
 
 .included {
-  position: absolute;
-  left: 18px;
-  right: 18px;
-  bottom: 16px;
-  padding: 16px 18px;
-  background: rgba(10, 10, 12, 0.9);
+  margin-top: 12px;
+  padding: 14px 18px;
+  background: var(--bg-raise);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
 }
 
 .included ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
   list-style: none;
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   padding: 0;
 }
 
@@ -2382,7 +2399,7 @@ ul.values svg {
   }
 
   .spot-card {
-    width: min(680px, calc(100% - 24px));
+    width: min(880px, calc(100% - 24px));
   }
 
   .spot-nav {
@@ -2400,7 +2417,7 @@ ul.values svg {
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 880px) {
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -2819,4 +2836,10 @@ ul.values svg {
   .feature {
     animation: none;
   }
+}
+
+.included-note {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
 }

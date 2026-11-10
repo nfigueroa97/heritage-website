@@ -2,7 +2,7 @@
   "title": "Our Services",
   "tabs": "Service categories",
   "view": "View Services",
-  "included": "Included Services",
+  "included": "Services Offered",
   "more": "Additional Services",
   "quote": "Get a Quote",
   "prev": "Previous service",
@@ -11,5 +11,6 @@
   "specific": "We're here to help with all your automotive needs.",
   "contact": "Contact Us",
   "shop": "Vehicles parked outside the Heritage Auto shop",
-  "alt": "{{name}} service"
+  "alt": "{{name}} service",
+  "note": "Pricing and availability may vary by vehicle. Contact us for a quote."
 }

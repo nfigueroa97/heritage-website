@@ -15,6 +15,17 @@ export default function Services({
   const { t } = useTranslation('services')
   const { content, text } = useContent()
   const active = content.services.find((service) => service.id === activeId) ?? content.services[0]
+  const shopLabels = content.shopServices
+    .filter((item) => item.serviceId === active.id)
+    .map((item) => item.label)
+  const clean = (label: string) => label.toLowerCase().replace(/[^a-z0-9]/g, '')
+  // Generic items already covered by a shop service (e.g. "Oil Change") are listed once.
+  const offered = [
+    ...active.included
+      .map((item) => text(item))
+      .filter((label) => !shopLabels.some((shop) => clean(shop).includes(clean(label)))),
+    ...shopLabels,
+  ]
   const viewportRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<Array<HTMLElement | null>>([])
   const fromScroll = useRef(false)
@@ -129,13 +140,14 @@ export default function Services({
             <div className="included">
               <h3>{t('included')}</h3>
               <ul>
-                {active.included.map((item) => (
-                  <li key={item.en}>
+                {offered.map((label) => (
+                  <li key={label}>
                     <Icon name="check" size={16} />
-                    {text(item)}
+                    {label}
                   </li>
                 ))}
               </ul>
+              <p className="included-note">{t('note')}</p>
             </div>
           </div>
         </div>
@@ -186,8 +198,6 @@ export default function Services({
             ))}
           </div>
         </div>
-
-       
       </div>
     </section>
   )

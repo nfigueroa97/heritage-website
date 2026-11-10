@@ -33,7 +33,7 @@ export default function Header({ onSelectService }: { onSelectService: (id: stri
     { id: 'contact', label: t('nav.contact') },
   ]
 
-  const searchItems: Result[] = [
+  const allItems: Result[] = [
     ...content.shopServices.map((service) => ({
       label: service.label,
       hint: t('search.service'),
@@ -65,6 +65,15 @@ export default function Header({ onSelectService }: { onSelectService: (id: stri
       serviceId: null,
     },
   ]
+
+  // Same label from different sources (e.g. "Fleets", "Brakes") is shown once.
+  const seen = new Set<string>()
+  const searchItems = allItems.filter((item) => {
+    const key = `${item.hint}:${item.label.toLowerCase().replace(/[^a-z0-9áéíóúñ]/g, '')}`
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
 
   useEffect(() => {
     function onScroll() {

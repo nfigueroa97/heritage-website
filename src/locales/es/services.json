@@ -2,7 +2,7 @@
   "title": "Nuestros servicios",
   "tabs": "Categorías de servicio",
   "view": "Ver servicios",
-  "included": "Servicios incluidos",
+  "included": "Servicios ofrecidos",
   "more": "Servicios adicionales",
   "quote": "Cotizar",
   "prev": "Servicio anterior",
@@ -11,5 +11,6 @@
   "specific": "Estamos para ayudarte con lo que tu auto necesite.",
   "contact": "Contáctanos",
   "shop": "Vehículos estacionados afuera del taller de Heritage Auto",
-  "alt": "Servicio de {{name}}"
+  "alt": "Servicio de {{name}}",
+  "note": "Los precios y la disponibilidad pueden variar según el vehículo. Contáctanos para cotizar."
 }

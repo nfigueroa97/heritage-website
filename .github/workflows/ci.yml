@@ -1,9 +1,21 @@
-name: CI
+name: CI/CD
 
 on:
   pull_request:
   push:
     branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  AWS_REGION: us-east-1
+  S3_BUCKET: heritage-auto-website-prod
+  CLOUDFRONT_DISTRIBUTION_ID: E35J7QBF0VHA47
 
 jobs:
   check:
@@ -21,3 +33,58 @@ jobs:
       - run: npm run test:e2e
         env:
           VITE_ADMIN_PASSWORD: heritage
+
+  deploy:
+    needs: check
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_GA_ID: ${{ secrets.VITE_GA_ID }}
+          VITE_CHAT_SRC: ${{ secrets.VITE_CHAT_SRC }}
+          VITE_ADMIN_PASSWORD: ${{ secrets.VITE_ADMIN_PASSWORD }}
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Hashed build assets: cache for a year.
+      - name: Upload assets
+        run: |
+          aws s3 sync dist/assets "s3://${S3_BUCKET}/assets" \
+            --delete \
+            --cache-control "public,max-age=31536000,immutable"
+
+      # Everything else (logo, favicon, robots, sitemap...) except index.html.
+      - name: Upload static files
+        run: |
+          aws s3 sync dist "s3://${S3_BUCKET}" \
+            --delete \
+            --exclude "assets/*" \
+            --exclude "index.html" \
+            --cache-control "public,max-age=3600"
+
+      # index.html last, never cached, so new releases appear immediately.
+      - name: Upload index.html
+        run: |
+          aws s3 cp dist/index.html "s3://${S3_BUCKET}/index.html" \
+            --cache-control "no-cache, no-store, must-revalidate" \
+            --content-type "text/html; charset=utf-8"
+
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" \
+            --paths "/*"
