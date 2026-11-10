@@ -36,7 +36,7 @@ export const images = {
   promo1Image: promo1,
   promo2Image: promo2,
   promo3Image: promo3,
-  // routine: photo('photo-1549317661-bd32c8ce0db2', 1200),
-  // bronco: photo('photo-1533473359331-0135ef1b58bf', 1200),
-  // classic: photo('photo-1494976388531-d1058494cdd8', 1200),
+  routine: photo('photo-1549317661-bd32c8ce0db2', 1200),
+  bronco: photo('photo-1533473359331-0135ef1b58bf', 1200),
+  classic: photo('photo-1494976388531-d1058494cdd8', 1200),
 }

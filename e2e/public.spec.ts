@@ -4,7 +4,7 @@ test('search finds Oil Change and opens maintenance', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('searchbox', { name: 'Search services and projects' }).fill('Oil Change')
   await page.getByRole('button', { name: /Oil Change/ }).first().click()
-  await expect(page.getByRole('tab', { name: 'Maintenance' })).toHaveAttribute('aria-selected', 'true')
+  await expect(page.getByRole('tab', { name: 'General Mechanic' })).toHaveAttribute('aria-selected', 'true')
 })
 
 test('contact shows the scheduler and the footer lists the phone', async ({ page }) => {

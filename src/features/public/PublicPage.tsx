@@ -34,7 +34,7 @@ export default function PublicPage({ locale = 'en' }: { locale?: Locale }) {
         <Hero />
         <About />
         <Services activeId={serviceId} onSelect={setServiceId} />
-        <Projects onSelectService={setServiceId} />
+        <Projects />
         <Reviews />
         <Contact />
       </main>

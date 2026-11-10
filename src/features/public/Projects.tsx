@@ -4,7 +4,7 @@ import { useContent } from '../../shared/content/useContent'
 import { images } from '../../data/images'
 import { Icon } from './Icons'
 
-export default function Projects({ onSelectService: _onSelectService }: { onSelectService: (id: string) => void }) {
+export default function Projects() {
   const { t } = useTranslation('projects')
   const { content, text } = useContent()
   const [pos, setPos] = useState(52)

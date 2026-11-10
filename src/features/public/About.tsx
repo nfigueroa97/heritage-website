@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { track } from '../../shared/analytics'
 import { useContent } from '../../shared/content/useContent'
@@ -14,7 +14,9 @@ export default function About() {
   const viewportRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<Array<HTMLElement | null>>([])
   const activeRef = useRef(active)
-  activeRef.current = active
+  useEffect(() => {
+    activeRef.current = active
+  }, [active])
 
   function scrollToCard(index: number, behavior: ScrollBehavior = 'smooth') {
     if (!window.matchMedia('(max-width: 1040px)').matches) return
