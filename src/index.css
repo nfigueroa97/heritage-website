@@ -3720,9 +3720,13 @@ dialog.svc-modal .svc-modal-list li {
   pointer-events: none;
 }
 
-.svc-hero-copy,
-.svc-hero .svc-arrow {
+.svc-hero-copy {
   z-index: 1;
+}
+
+/* Above the copy block, which spans the left side and would otherwise swallow clicks on the prev arrow. */
+.svc-hero .svc-arrow {
+  z-index: 3;
 }
 
 .svc-hero-copy {
