@@ -23,7 +23,8 @@
     "phone": "Phone",
     "email": "Email",
     "location": "Location & map",
-    "promos": "Promotions & offers"
+    "promos": "Promotions & offers",
+    "clear": "Clear search"
   },
   "menu": {
     "open": "Open menu",

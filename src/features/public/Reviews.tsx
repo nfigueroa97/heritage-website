@@ -4,6 +4,9 @@ import { images } from '../../data/images'
 import { useContent } from '../../shared/content/useContent'
 import { Icon } from './Icons'
 
+// Instagram highlight with the current promotions.
+const PROMOS_URL = 'https://www.instagram.com/stories/highlights/18102868175389200/?hl=en'
+
 function Stars({ count, size = 16 }: { count: number; size?: number }) {
   return (
     <span className="stars" aria-hidden="true">
@@ -178,7 +181,7 @@ export default function Reviews() {
           </div>
         </div>
 
-        <aside className="promo">
+        <aside className="promo" id="promo">
           {/* <p className="rev-eyebrow">{t('promoEyebrow')}</p> */}
           <h3>
             <span className="only-d">{t('promoTitle')}</span>
@@ -197,7 +200,7 @@ export default function Reviews() {
             </div>
             <img className="right" src={images.promo2Image} alt="" />
           </div>
-          <a className="btn-solid" href={content.site.instagramUrl} target="_blank" rel="noopener noreferrer">
+          <a className="btn-solid" href={PROMOS_URL} target="_blank" rel="noopener noreferrer">
             <Icon name="instagram" size={26} />
             {t('promoCta')}
             <Icon name="arrow" size={18} />

@@ -24,6 +24,7 @@ export default function Header({ onSelectService }: { onSelectService: (id: stri
   const [query, setQuery] = useState('')
   const [searchOpen, setSearchOpen] = useState(false)
   const searchRef = useRef<HTMLFormElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const nav = [
     { id: 'home', label: t('nav.home'), keywords: ['home', 'inicio'] },
@@ -108,11 +109,10 @@ export default function Header({ onSelectService }: { onSelectService: (id: stri
       serviceId: null,
       keywords: ['location', 'map', 'mapa', 'address', 'dirección', 'direccion', 'directions', 'ubicación', 'ubicacion', 'hours', 'horario', 'how to get'],
     },
-    // There is no promotions section yet: send people to the quote form.
     {
       label: t('search.promos'),
       hint: t('search.contactHint'),
-      target: 'contact-form',
+      target: 'promo',
       serviceId: null,
       keywords: ['promo', 'promos', 'promotion', 'promotions', 'promoción', 'promociones', 'offer', 'offers', 'oferta', 'ofertas', 'discount', 'descuento', 'deal', 'deals', 'special', 'specials'],
     },
@@ -208,6 +208,7 @@ export default function Header({ onSelectService }: { onSelectService: (id: stri
         >
           <Icon name="search" size={18} />
           <input
+            ref={inputRef}
             type="search"
             placeholder={t('search.placeholder')}
             value={query}
@@ -222,6 +223,20 @@ export default function Header({ onSelectService }: { onSelectService: (id: stri
               if (event.key === 'Escape') setSearchOpen(false)
             }}
           />
+          {query && (
+            <button
+              type="button"
+              className="search-clear"
+              aria-label={t('search.clear')}
+              onClick={() => {
+                setQuery('')
+                setSearchOpen(false)
+                inputRef.current?.focus()
+              }}
+            >
+              <Icon name="close" size={14} />
+            </button>
+          )}
           {searchOpen && needle && (
             <ul className="search-results">
               {results.length === 0 && <li className="search-empty">{t('search.empty')}</li>}

@@ -97,6 +97,7 @@ button {
 
 section[id],
 #location,
+#promo,
 #fleet,
 #featured,
 #service-cards,
@@ -229,7 +230,29 @@ section[id],
 }
 
 .search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-clear {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.08);
+  color: #444;
   cursor: pointer;
+}
+
+.search-clear:hover {
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.search .search-clear svg {
+  color: currentColor;
 }
 
 .search svg {
@@ -1900,6 +1923,7 @@ ul.values svg {
   margin-top: auto;
   font-size: 42px;
   color: white;
+  text-align: right;
 }
 
 .aside-script.brush {
@@ -3952,4 +3976,17 @@ dialog.svc-modal .svc-modal-list li {
   .svc-hero-dots {
     display: none;
   }
+}
+
+/* Slight zoom on the ShopMonkey scheduler (cross-origin iframe: scale it, then shrink its box to compensate). */
+.scheduler-host {
+  --sm-zoom: 1.1;
+  overflow: hidden;
+}
+
+.scheduler-host iframe {
+  width: calc(100% / var(--sm-zoom)) !important;
+  height: calc(620px / var(--sm-zoom)) !important;
+  transform: scale(var(--sm-zoom));
+  transform-origin: 0 0;
 }
