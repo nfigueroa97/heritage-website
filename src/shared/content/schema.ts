@@ -19,6 +19,7 @@ export const serviceSchema = z.object({
   kicker: localeSchema,
   description: localeSchema,
   included: z.array(localeSchema),
+  highlights: z.array(z.object({ icon: z.string(), title: localeSchema, text: localeSchema })).optional(),
 })
 
 export const pathSchema = z.object({

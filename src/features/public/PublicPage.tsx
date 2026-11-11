@@ -16,7 +16,7 @@ import Services from './Services'
 
 export default function PublicPage({ locale = 'en' }: { locale?: Locale }) {
   const { i18n } = useTranslation()
-  const [serviceId, setServiceId] = useState('maintenance')
+  const [serviceId, setServiceId] = useState('general_mechanic')
 
   useEffect(() => {
     void i18n.changeLanguage(locale)

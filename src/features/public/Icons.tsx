@@ -108,6 +108,12 @@ export function Icon({ name, size = 22, filled = false }: { name: string; size?:
           <path d="M3.5 10h17M8 3.5V6.5M16 3.5V6.5" />
         </>
       )}
+      {name === 'coins' && (
+        <>
+          <ellipse cx="9" cy="7" rx="5.5" ry="2.5" />
+          <path d="M3.5 7v4c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5V7M3.5 11v4c0 1.4 2.5 2.5 5.5 2.5M14.5 12.2c3 0 6 1 6 2.3v4c0 1.4-2.7 2.5-5.7 2.5s-5.5-1.1-5.5-2.5v-4" />
+        </>
+      )}
       {name === 'external' && <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />}
       {name === 'tag' && (
         <>
@@ -117,6 +123,8 @@ export function Icon({ name, size = 22, filled = false }: { name: string; size?:
       )}
       {name === 'arrow' && <path d="M5 12h14M13 6l6 6-6 6" />}
       {name === 'chevronLeft' && <path d="M14.5 6 8.5 12l6 6" />}
+      {name === 'chevronDown' && <path d="m6 9.5 6 6 6-6" />}
+      {name === 'chevronUp' && <path d="m6 14.5 6-6 6 6" />}
       {name === 'chevronRight' && <path d="M9.5 6l6 6-6 6" />}
       {name === 'check' && <path d="m5 12.5 4.2 4.2L19 7.5" />}
       {name === 'menu' && <path d="M4 7h16M4 12h16M4 17h16" />}

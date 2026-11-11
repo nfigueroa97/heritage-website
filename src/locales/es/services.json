@@ -12,5 +12,12 @@
   "contact": "Contáctanos",
   "shop": "Vehículos estacionados afuera del taller de Heritage Auto",
   "alt": "Servicio de {{name}}",
-  "note": "Los precios y la disponibilidad pueden variar según el vehículo. Contáctanos para cotizar."
+  "note": "Los precios y la disponibilidad pueden variar según el vehículo. Contáctanos para cotizar.",
+  "modalTitle": "Todos los servicios de {{name}}",
+  "modalText": "Lista completa de servicios de {{name}} disponibles en Heritage Auto LV.",
+  "modalHelp": "¿Necesitas ayuda? Nuestro equipo te explica tus opciones.",
+  "financingAvailable": "Financiamiento disponible",
+  "close": "Cerrar",
+  "viewAllLink": "Ver todos los servicios",
+  "financingLine": "Opciones de financiamiento disponibles para reparaciones elegibles."
 }

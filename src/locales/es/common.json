@@ -14,7 +14,16 @@
     "service": "Servicio",
     "project": "Proyecto",
     "fleets": "Flotillas",
-    "featured": "Restauración destacada"
+    "featured": "Restauración destacada",
+    "menu": "Menú",
+    "financing": "Financiamiento",
+    "financingHint": "Financiamiento",
+    "contactHint": "Contacto",
+    "social": "Redes sociales",
+    "phone": "Teléfono",
+    "email": "Correo",
+    "location": "Ubicación y mapa",
+    "promos": "Promociones y ofertas"
   },
   "menu": {
     "open": "Abrir menú",

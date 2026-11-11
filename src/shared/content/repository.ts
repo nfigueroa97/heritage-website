@@ -27,6 +27,7 @@ function mergeServices(saved: Service[] | undefined): Service[] {
       id: service.id,
       icon: service.icon,
       image: service.image,
+      highlights: service.highlights,
     }
   })
 }

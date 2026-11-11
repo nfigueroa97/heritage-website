@@ -115,7 +115,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="location">
+        <div className="location" id="location">
           <div>
             <Icon name="pin" size={28} />
             <h2>{t('location')}</h2>

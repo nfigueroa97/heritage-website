@@ -5,6 +5,89 @@ import { useContent } from '../../shared/content/useContent'
 // import { images } from '../../data/images'
 import { Icon } from './Icons'
 
+const HIGHLIGHTS_SHOWN = 3
+
+// Lives outside the keyed panel so it stays open while the arrows switch category.
+function ServicesModal({
+  open,
+  onClose,
+  onStep,
+  items,
+  name,
+  image,
+}: {
+  open: boolean
+  onClose: () => void
+  onStep: (delta: number) => void
+  items: string[]
+  name: string
+  image: string
+}) {
+  const { t } = useTranslation('services')
+  const dialogRef = useRef<HTMLDialogElement>(null)
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    if (open && !dialog.open) dialog.showModal()
+    if (!open && dialog.open) dialog.close()
+  }, [open])
+
+  useEffect(() => {
+    if (dialogRef.current) dialogRef.current.scrollTop = 0
+  }, [name])
+
+  return (
+    <dialog
+      ref={dialogRef}
+      className="svc-modal"
+      aria-label={t('modalTitle', { name })}
+      onClose={onClose}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) onClose()
+      }}
+    >
+      <div className="svc-modal-head">
+        <img src={image} alt="" />
+        <button type="button" className="svc-modal-nav prev" aria-label={t('prev')} onClick={() => onStep(-1)}>
+          <Icon name="chevronLeft" size={20} />
+        </button>
+        <button type="button" className="svc-modal-nav next" aria-label={t('next')} onClick={() => onStep(1)}>
+          <Icon name="chevronRight" size={20} />
+        </button>
+        <div className="svc-modal-intro">
+          <h2>{t('modalTitle', { name })}</h2>
+          <p>{t('modalText', { name })}</p>
+        </div>
+        <button type="button" className="svc-modal-close" aria-label={t('close')} onClick={onClose}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+      <ul className="svc-modal-list">
+        {items.map((label) => (
+          <li key={label}>
+            <Icon name="check" size={18} />
+            {label}
+          </li>
+        ))}
+      </ul>
+      <div className="svc-modal-foot">
+        <a className="svc-modal-fin" href="#financing" onClick={onClose}>
+          <Icon name="check" size={20} />
+          {t('financingAvailable')}
+        </a>
+        <span>{t('modalHelp')}</span>
+        <a className="btn" href="#contact-form" onClick={onClose}>
+          {t('quote')}
+          <Icon name="arrow" size={18} />
+        </a>
+      </div>
+    </dialog>
+  )
+}
+
 export default function Services({
   activeId,
   onSelect,
@@ -13,7 +96,6 @@ export default function Services({
   onSelect: (id: string) => void
 }) {
   const { t } = useTranslation('services')
-  const { t: tf } = useTranslation('financing')
   const { content, text } = useContent()
   const active = content.services.find((service) => service.id === activeId) ?? content.services[0]
   const shopLabels = content.shopServices
@@ -31,6 +113,8 @@ export default function Services({
   const cardRefs = useRef<Array<HTMLElement | null>>([])
   const fromScroll = useRef(false)
   const [edges, setEdges] = useState({ start: true, end: false })
+  const [modalOpen, setModalOpen] = useState(false)
+  const touchX = useRef<number | null>(null)
 
   function updateEdges() {
     const scroller = viewportRef.current
@@ -106,6 +190,14 @@ export default function Services({
     scrollToService(id)
   }
 
+  function stepModal(delta: number) {
+    const index = content.services.findIndex((service) => service.id === active.id)
+    const next = content.services[(index + delta + content.services.length) % content.services.length]
+    if (!next) return
+    onSelect(next.id)
+    track('service_tab', { id: next.id })
+  }
+
   function step(delta: number) {
     const index = content.services.findIndex((service) => service.id === active.id)
     const next = content.services[(index + delta + content.services.length) % content.services.length]
@@ -115,8 +207,7 @@ export default function Services({
   return (
     <section className="services" id="services">
       <div className="wrap">
-        <h2 className="section-title services-title">{t('title')}</h2>
-        <div className="tabs" role="tablist" aria-label={t('tabs')}>
+        {/* <div className="tabs" role="tablist" aria-label={t('tabs')}>
           {content.services.map((service) => (
             <button
               key={service.id}
@@ -135,48 +226,102 @@ export default function Services({
               {text(service.tab)}
             </button>
           ))}
-        </div>
+        </div> */}
 
         <div
-          className="feature"
+          className="svc-panel"
           id="service-panel"
-          role="tabpanel"
-          aria-labelledby={`tab-${active.id}`}
+          role="region"
+          aria-label={text(active.tab)}
           key={active.id}
         >
-          <button type="button" className="svc-arrow prev" aria-label={t('prev')} onClick={() => step(-1)}>
-            <Icon name="chevronLeft" size={20} />
-          </button>
-          <button type="button" className="svc-arrow next" aria-label={t('next')} onClick={() => step(1)}>
-            <Icon name="chevronRight" size={20} />
-          </button>
-          <div className="feature-copy">
-            <h2>{text(active.tab)}</h2>
-            <p className="kicker">{text(active.kicker)}</p>
-            <p>{text(active.description)}</p>
-            <a className="btn" href="#contact-form" onClick={() => track('quote_click', { id: active.id })}>
-              {t('quote')}
-              <Icon name="arrow" size={18} />
-            </a>
+          <div
+            className="svc-hero"
+            onTouchStart={(event) => {
+              touchX.current = event.touches[0].clientX
+            }}
+            onTouchEnd={(event) => {
+              if (touchX.current === null) return
+              const dx = event.changedTouches[0].clientX - touchX.current
+              touchX.current = null
+              if (Math.abs(dx) > 60) step(dx < 0 ? 1 : -1)
+            }}
+          >
+            <img className="svc-hero-img" src={active.image} alt={t('alt', { name: text(active.title) })} />
+            <button type="button" className="svc-arrow prev" aria-label={t('prev')} onClick={() => step(-1)}>
+              <Icon name="chevronLeft" size={20} />
+            </button>
+            <button type="button" className="svc-arrow next" aria-label={t('next')} onClick={() => step(1)}>
+              <Icon name="chevronRight" size={20} />
+            </button>
+            <div className="svc-dots svc-hero-dots">
+              {content.services.map((service) => (
+                <button
+                  key={service.id}
+                  type="button"
+                  className={service.id === active.id ? 'active' : undefined}
+                  aria-label={text(service.tab)}
+                  aria-current={service.id === active.id ? 'true' : undefined}
+                  onClick={() => openService(service.id)}
+                />
+              ))}
+            </div>
+            <div className="svc-hero-copy">
+              <h2 className="svc-eyebrow">{t('title')}</h2>
+              <h3 className="svc-hero-title">{text(active.tab)}</h3>
+              <p className="svc-hero-text">{text(active.description)}</p>
+              <div className="svc-hero-actions">
+                <a className="btn" href="#contact-form" onClick={() => track('quote_click', { id: active.id })}>
+                  {t('quote')}
+                  <Icon name="arrow" size={18} />
+                </a>
+                <a className="btn-outline" href={content.site.phoneHref} onClick={() => track('phone_click')}>
+                  <Icon name="phone" size={18} />
+                  {t('contact')}
+                </a>
+              </div>
+            </div>
           </div>
-          <div className="feature-visual">
-            <img src={active.image} alt={t('alt', { name: text(active.title) })} />
-            <div className="included">
+
+          <div className="included">
+            <div className="included-head">
               <h3>{t('included')}</h3>
-              <ul>
-                {offered.map((label) => (
-                  <li key={label}>
-                    <Icon name="check" size={16} />
-                    {label}
-                  </li>
-                ))}
-              </ul>
-              <p className="included-note">
-                {t('note')} <a href="#financing">{tf('link')}</a>
-              </p>
+              <button type="button" className="included-viewall" onClick={() => setModalOpen(true)}>
+                {t('viewAllLink')}
+                <Icon name="arrow" size={18} />
+              </button>
+            </div>
+            <ul className="svc-highlights">
+              {(active.highlights ?? []).slice(0, HIGHLIGHTS_SHOWN).map((item) => (
+                <li key={item.title.en}>
+                  <span className="svc-highlight-icon">
+                    <Icon name={item.icon} size={30} />
+                  </span>
+                  <div>
+                    <strong>{text(item.title)}</strong>
+                    <p>{text(item.text)}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <div className="included-foot">
+              <a className="included-fin" href="#financing">
+                <Icon name="coins" size={30} />
+                <span>{t('financingLine')}</span>
+              </a>
+              <p className="included-note">{t('note')}</p>
             </div>
           </div>
         </div>
+
+        <ServicesModal
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
+          onStep={stepModal}
+          items={offered}
+          name={text(active.tab)}
+          image={active.image}
+        />
 
         <div id="service-cards">
           <h2 className="section-title">{t('more')}</h2>
@@ -231,17 +376,6 @@ export default function Services({
                 ))}
               </div>
             </div>
-          </div>
-          <div className="svc-dots">
-            {content.services.map((service) => (
-              <button
-                key={service.id}
-                type="button"
-                className={service.id === active.id ? 'active' : undefined}
-                aria-label={text(service.tab)}
-                onClick={() => openService(service.id)}
-              />
-            ))}
           </div>
         </div>
       </div>

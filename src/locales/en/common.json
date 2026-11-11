@@ -14,7 +14,16 @@
     "service": "Service",
     "project": "Project",
     "fleets": "Fleets",
-    "featured": "Featured restoration"
+    "featured": "Featured restoration",
+    "menu": "Menu",
+    "financing": "Financing",
+    "financingHint": "Financing",
+    "contactHint": "Contact",
+    "social": "Social media",
+    "phone": "Phone",
+    "email": "Email",
+    "location": "Location & map",
+    "promos": "Promotions & offers"
   },
   "menu": {
     "open": "Open menu",

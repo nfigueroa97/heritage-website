@@ -12,6 +12,7 @@ type Result = {
   hint: string
   target: string
   serviceId: string | null
+  keywords?: string[]
 }
 
 export default function Header({ onSelectService }: { onSelectService: (id: string) => void }) {
@@ -25,12 +26,12 @@ export default function Header({ onSelectService }: { onSelectService: (id: stri
   const searchRef = useRef<HTMLFormElement>(null)
 
   const nav = [
-    { id: 'home', label: t('nav.home') },
-    { id: 'about', label: t('nav.about') },
-    { id: 'services', label: t('nav.services') },
-    { id: 'projects', label: t('nav.projects') },
-    { id: 'reviews', label: t('nav.reviews') },
-    { id: 'contact', label: t('nav.contact') },
+    { id: 'home', label: t('nav.home'), keywords: ['home', 'inicio'] },
+    { id: 'about', label: t('nav.about'), keywords: ['about', 'about us', 'nosotros', 'acerca'] },
+    { id: 'services', label: t('nav.services'), keywords: ['services', 'servicios'] },
+    { id: 'projects', label: t('nav.projects'), keywords: ['projects', 'proyectos', 'gallery', 'galería'] },
+    { id: 'reviews', label: t('nav.reviews'), keywords: ['reviews', 'reseñas', 'opiniones', 'testimonials'] },
+    { id: 'contact', label: t('nav.contact'), keywords: ['contact', 'contacto', 'quote', 'cotización', 'appointment', 'cita', 'schedule'] },
   ]
 
   const allItems: Result[] = [
@@ -64,6 +65,68 @@ export default function Header({ onSelectService }: { onSelectService: (id: stri
       target: 'featured',
       serviceId: null,
     },
+    // Site-wide topics. Keywords are bilingual so both languages find them.
+    ...nav.map((item) => ({
+      label: item.label,
+      hint: t('search.menu'),
+      target: item.id,
+      serviceId: null,
+      keywords: item.keywords,
+    })),
+    {
+      label: t('search.financing'),
+      hint: t('search.financingHint'),
+      target: 'financing',
+      serviceId: null,
+      keywords: ['financing', 'financiamiento', 'financiar', 'payment', 'payments', 'pay', 'pago', 'pagos', 'credit', 'crédito', 'lease', 'apply', 'solicitar'],
+    },
+    ...['Snap Finance', 'Koalafi', 'Sunbit'].map((name) => ({
+      label: name,
+      hint: t('search.financingHint'),
+      target: 'financing',
+      serviceId: null,
+      keywords: [name.toLowerCase().split(' ')[0]],
+    })),
+    {
+      label: t('search.phone'),
+      hint: t('search.contactHint'),
+      target: 'contact',
+      serviceId: null,
+      keywords: ['phone', 'call', 'tel', 'telephone', 'teléfono', 'telefono', 'llamar', 'número', 'numero'],
+    },
+    {
+      label: t('search.email'),
+      hint: t('search.contactHint'),
+      target: 'contact',
+      serviceId: null,
+      keywords: ['email', 'e-mail', 'mail', 'correo'],
+    },
+    {
+      label: t('search.location'),
+      hint: t('search.contactHint'),
+      target: 'location',
+      serviceId: null,
+      keywords: ['location', 'map', 'mapa', 'address', 'dirección', 'direccion', 'directions', 'ubicación', 'ubicacion', 'hours', 'horario', 'how to get'],
+    },
+    // There is no promotions section yet: send people to the quote form.
+    {
+      label: t('search.promos'),
+      hint: t('search.contactHint'),
+      target: 'contact-form',
+      serviceId: null,
+      keywords: ['promo', 'promos', 'promotion', 'promotions', 'promoción', 'promociones', 'offer', 'offers', 'oferta', 'ofertas', 'discount', 'descuento', 'deal', 'deals', 'special', 'specials'],
+    },
+    ...[
+      ['Facebook', ['facebook', 'fb']],
+      ['Instagram', ['instagram', 'ig']],
+      ['Yelp', ['yelp']],
+    ].map(([label, keywords]) => ({
+      label: label as string,
+      hint: t('search.social'),
+      target: 'footer',
+      serviceId: null,
+      keywords: [...(keywords as string[]), 'social', 'social media', 'redes', 'redes sociales', 'follow', 'síguenos'],
+    })),
   ]
 
   // Same label from different sources (e.g. "Fleets", "Brakes") is shown once.
@@ -101,7 +164,11 @@ export default function Header({ onSelectService }: { onSelectService: (id: stri
 
   const needle = query.trim().toLowerCase()
   const results = needle
-    ? searchItems.filter((item) => item.label.toLowerCase().includes(needle))
+    ? searchItems.filter(
+        (item) =>
+          item.label.toLowerCase().includes(needle) ||
+          item.keywords?.some((word) => word.includes(needle)),
+      )
     : []
 
   function choose(item: Result) {

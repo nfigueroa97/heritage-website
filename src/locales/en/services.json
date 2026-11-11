@@ -12,5 +12,12 @@
   "contact": "Contact Us",
   "shop": "Vehicles parked outside the Heritage Auto shop",
   "alt": "{{name}} service",
-  "note": "Pricing and availability may vary by vehicle. Contact us for a quote."
+  "note": "Pricing and availability may vary by vehicle. Contact us for a quote.",
+  "modalTitle": "All {{name}} Services",
+  "modalText": "A complete list of {{name}} services available at Heritage Auto LV.",
+  "modalHelp": "Need help? Our team can walk you through your options.",
+  "financingAvailable": "Financing Available",
+  "close": "Close",
+  "viewAllLink": "View All Services",
+  "financingLine": "Financing options available for eligible repairs."
 }

@@ -112,10 +112,10 @@ export default function Projects() {
               {t('line2')}
             </h2>
             <p>{t('text')}</p>
-            <a className="btn" href="#projects">
+            {/* <a className="btn" href="#projects">
               {t('view')}
               <Icon name="arrow" size={18} />
-            </a>
+            </a> */}
           </div>
 
           <div
