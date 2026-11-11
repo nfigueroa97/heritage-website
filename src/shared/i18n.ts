@@ -14,6 +14,8 @@ import enReviews from '../locales/en/reviews.json'
 import esReviews from '../locales/es/reviews.json'
 import enContact from '../locales/en/contact.json'
 import esContact from '../locales/es/contact.json'
+import enFinancing from '../locales/en/financing.json'
+import esFinancing from '../locales/es/financing.json'
 import enAdmin from '../locales/en/admin.json'
 import esAdmin from '../locales/es/admin.json'
 
@@ -27,6 +29,7 @@ void i18n.use(initReactI18next).init({
       projects: enProjects,
       reviews: enReviews,
       contact: enContact,
+      financing: enFinancing,
       admin: enAdmin,
     },
     es: {
@@ -37,6 +40,7 @@ void i18n.use(initReactI18next).init({
       projects: esProjects,
       reviews: esReviews,
       contact: esContact,
+      financing: esFinancing,
       admin: esAdmin,
     },
   },

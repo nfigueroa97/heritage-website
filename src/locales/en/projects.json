@@ -10,5 +10,36 @@
   "after": "After",
   "beforeAlt": "The same classic car before restoration",
   "afterAlt": "Restored classic Mustang",
-  "slider": "Drag to compare before and after"
+  "slider": "Drag to compare before and after",
+  "galleryTitle": "More Featured Projects",
+  "prevProject": "Previous projects",
+  "nextProject": "Next projects",
+  "goTo": "Go to project {{n}}",
+  "cards": [
+    {
+      "id": "classic",
+      "title": "Classic Chevy Restoration",
+      "tags": "Restoration | Custom Paint"
+    },
+    {
+      "id": "lowrider",
+      "title": "Lowrider Custom Build",
+      "tags": "Custom Build | Suspension"
+    },
+    {
+      "id": "engine",
+      "title": "Engine Rebuild",
+      "tags": "Engine | Performance"
+    },
+    {
+      "id": "exhaust",
+      "title": "Exhaust & Underbody",
+      "tags": "Performance | Custom Exhaust"
+    },
+    {
+      "id": "sports",
+      "title": "Sports Car Service",
+      "tags": "Maintenance | Detailing"
+    }
+  ]
 }

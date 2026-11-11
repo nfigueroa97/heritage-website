@@ -8,6 +8,10 @@ import collision from '../assets/collision.jpg'
 import diagnostics from '../assets/diagnostic.jpg'
 import ac from '../assets/AC.png'
 import fleet from '../assets/fleets.jpg'
+import projectClassic from '../assets/performance.jpg'
+import projectEngine from '../assets/engine.jpg'
+import projectExhaust from '../assets/s.jpg'
+import projectSports from '../assets/hero8.jpg'
 import promo1 from '../assets/promo1.png'
 import promo2 from '../assets/promo2.png'
 import promo3 from '../assets/promo3.png' 
@@ -33,6 +37,11 @@ export const images = {
   diagnosticsImage: diagnostics,
   acImage: ac,
   fleetImage: fleet,
+  projectClassic,
+  projectLowrider: performance,
+  projectEngine,
+  projectExhaust,
+  projectSports,
   promo1Image: promo1,
   promo2Image: promo2,
   promo3Image: promo3,

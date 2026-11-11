@@ -40,7 +40,7 @@ export default function Hero() {
           </h1>
           <p className="hero-lead">{t('lead')}</p>
           <p className="hero-sub">{t('sub')}</p>
-          <a className="btn" href="#contact" onClick={() => track('schedule_click')}>
+          <a className="btn" href="#contact-form" onClick={() => track('schedule_click')}>
             <Icon name="calendar" size={18} />
             {t('cta')}
             <Icon name="arrow" size={18} />

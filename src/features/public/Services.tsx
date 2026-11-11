@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { track } from '../../shared/analytics'
 import { useContent } from '../../shared/content/useContent'
@@ -13,6 +13,7 @@ export default function Services({
   onSelect: (id: string) => void
 }) {
   const { t } = useTranslation('services')
+  const { t: tf } = useTranslation('financing')
   const { content, text } = useContent()
   const active = content.services.find((service) => service.id === activeId) ?? content.services[0]
   const shopLabels = content.shopServices
@@ -29,6 +30,27 @@ export default function Services({
   const viewportRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<Array<HTMLElement | null>>([])
   const fromScroll = useRef(false)
+  const [edges, setEdges] = useState({ start: true, end: false })
+
+  function updateEdges() {
+    const scroller = viewportRef.current
+    if (!scroller) return
+    const start = scroller.scrollLeft <= 2
+    const end = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 2
+    setEdges((prev) => (prev.start === start && prev.end === end ? prev : { start, end }))
+  }
+
+  function scrollCards(direction: number) {
+    const scroller = viewportRef.current
+    if (!scroller) return
+    scroller.scrollBy({ left: direction * scroller.clientWidth * 0.8, behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    updateEdges()
+    window.addEventListener('resize', updateEdges)
+    return () => window.removeEventListener('resize', updateEdges)
+  }, [])
 
   function scrollToService(id: string, behavior: ScrollBehavior = 'smooth') {
     const scroller = viewportRef.current
@@ -57,6 +79,7 @@ export default function Services({
   }, [active.id, content.services])
 
   function onCarouselScroll() {
+    updateEdges()
     const scroller = viewportRef.current
     if (!scroller || !window.matchMedia('(max-width: 1040px)').matches) return
     const mid = scroller.scrollLeft + scroller.clientWidth / 2
@@ -148,43 +171,65 @@ export default function Services({
                   </li>
                 ))}
               </ul>
-              <p className="included-note">{t('note')}</p>
+              <p className="included-note">
+                {t('note')} <a href="#financing">{tf('link')}</a>
+              </p>
             </div>
           </div>
         </div>
 
         <div id="service-cards">
           <h2 className="section-title">{t('more')}</h2>
-          <div className="svc-viewport" ref={viewportRef} onScroll={onCarouselScroll}>
-            <div className="card-grid">
-              {content.services.map((service, index) => (
-                <article
-                  className={`svc-card${service.id === active.id ? ' is-active' : ''}`}
-                  key={service.id}
-                  id={service.id === 'fleet' ? 'fleet' : undefined}
-                  ref={(node) => {
-                    cardRefs.current[index] = node
-                  }}
-                  onClick={() => openService(service.id)}
-                >
-                  <img src={service.image} alt="" />
-                  <div>
-                    <h3>{text(service.cardTitle)}</h3>
-                    <p>{text(service.blurb)}</p>
-                    <a
-                      className="svc-quote"
-                      href="#contact-form"
-                      onClick={(event) => {
-                        event.stopPropagation()
-                        track('quote_click', { id: service.id })
-                      }}
-                    >
-                      {t('quote')}
-                      <Icon name="arrow" size={16} />
-                    </a>
-                  </div>
-                </article>
-              ))}
+          <div className="svc-carousel">
+            <button
+              type="button"
+              className="svc-arrow prev"
+              aria-label={t('prev')}
+              disabled={edges.start}
+              onClick={() => scrollCards(-1)}
+            >
+              <Icon name="chevronLeft" size={20} />
+            </button>
+            <button
+              type="button"
+              className="svc-arrow next"
+              aria-label={t('next')}
+              disabled={edges.end}
+              onClick={() => scrollCards(1)}
+            >
+              <Icon name="chevronRight" size={20} />
+            </button>
+            <div className="svc-viewport" ref={viewportRef} onScroll={onCarouselScroll}>
+              <div className="card-grid">
+                {content.services.map((service, index) => (
+                  <article
+                    className={`svc-card${service.id === active.id ? ' is-active' : ''}`}
+                    key={service.id}
+                    id={service.id === 'fleet' ? 'fleet' : undefined}
+                    ref={(node) => {
+                      cardRefs.current[index] = node
+                    }}
+                    onClick={() => openService(service.id)}
+                  >
+                    <img src={service.image} alt="" />
+                    <div>
+                      <h3>{text(service.cardTitle)}</h3>
+                      <p>{text(service.blurb)}</p>
+                      <a
+                        className="svc-quote"
+                        href="#contact-form"
+                        onClick={(event) => {
+                          event.stopPropagation()
+                          track('quote_click', { id: service.id })
+                        }}
+                      >
+                        {t('quote')}
+                        <Icon name="arrow" size={16} />
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
           <div className="svc-dots">

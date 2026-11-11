@@ -1,4 +1,7 @@
 import { images, photo, } from './images'
+import snapLogo from '../assets/Snap_logo.png'
+import koalafiLogo from '../assets/koalafi.png'
+import sunbitLogo from '../assets/sunbit-logo.png'
 import type { SiteContent } from '../shared/content/schema'
 
 const L = (en: string, es: string) => ({ en, es })
@@ -227,6 +230,22 @@ export const defaultContent: SiteContent = {
     { icon: 'gauge', title: L('Engine & Performance Upgrades', 'Motor y mejoras de rendimiento') },
     { icon: 'wrench', title: L('Custom Paint & Body Work', 'Pintura y carrocería a medida') },
     { icon: 'check', title: L('Attention to Every Detail', 'Atención a cada detalle') },
+  ],
+  // Financing partners. Add the apply link in `url` to show the "Apply" button on its card.
+  financing: [
+    {
+      id: 'snap',
+      name: 'Snap Finance',
+      logo: snapLogo,
+      url: 'https://bk.snapfinance.com/origination?paramId=3w%2FEWVFzVGcQioSdKn1vuqdr2hNr3A1xiMt4CtG%2BqOU78RLW%2FlLYYa2lEkK1hZ0tog9ZSjNG2GyQln5HQrzShOzYiaK%2FnFnEZXfXtyBXVEw%3D',
+    },
+    {
+      id: 'koalafi',
+      name: 'Koalafi',
+      logo: koalafiLogo,
+      url: 'https://epply.koalafi.com/?dealerPublicId=4b277d25-f586-4a5f-be17-55d97d0ff782&cm=QR&orderId=b1cb5941-458a-4625-9687-cea7ce3206c6',
+    },
+    { id: 'sunbit', name: 'Sunbit', logo: sunbitLogo },
   ],
   shopServices: [
     { label: '5W-30 Synthetic Oil Change - 5qt*', serviceId: 'maintenance' },

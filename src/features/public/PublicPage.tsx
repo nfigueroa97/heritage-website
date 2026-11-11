@@ -6,6 +6,7 @@ import { Seo } from '../../shared/seo/Seo'
 import type { Locale } from '../../shared/content/schema'
 import About from './About'
 import Contact from './Contact'
+import Financing from './Financing'
 import Footer from './Footer'
 import Header from './Header'
 import Hero from './Hero'
@@ -34,6 +35,7 @@ export default function PublicPage({ locale = 'en' }: { locale?: Locale }) {
         <Hero />
         <About />
         <Services activeId={serviceId} onSelect={setServiceId} />
+        <Financing />
         <Projects />
         <Reviews />
         <Contact />

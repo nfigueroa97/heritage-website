@@ -75,7 +75,8 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="wrap footer-copy">{t('footer.copy')}</div>
+      <div className="wrap footer-copy">
+        <br />{t('footer.copy')}</div>
     </footer>
   )
 }

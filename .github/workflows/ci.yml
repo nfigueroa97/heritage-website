@@ -56,6 +56,15 @@ jobs:
           VITE_CHAT_SRC: ${{ secrets.VITE_CHAT_SRC }}
           VITE_ADMIN_PASSWORD: ${{ secrets.VITE_ADMIN_PASSWORD }}
 
+      - name: Verify AWS_ROLE_ARN secret
+        env:
+          AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+        run: |
+          if [ -z "$AWS_ROLE_ARN" ]; then
+            echo "::error::Secret AWS_ROLE_ARN is empty or missing. Add it in Settings > Secrets and variables > Actions > Repository secrets (not Environment or Dependabot secrets)."
+            exit 1
+          fi
+
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}

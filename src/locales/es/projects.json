@@ -10,5 +10,36 @@
   "after": "Después",
   "beforeAlt": "El mismo clásico antes de la restauración",
   "afterAlt": "Mustang clásico restaurado",
-  "slider": "Arrastra para comparar antes y después"
+  "slider": "Arrastra para comparar antes y después",
+  "galleryTitle": "Más proyectos destacados",
+  "prevProject": "Proyectos anteriores",
+  "nextProject": "Proyectos siguientes",
+  "goTo": "Ir al proyecto {{n}}",
+  "cards": [
+    {
+      "id": "classic",
+      "title": "Restauración de Chevy clásico",
+      "tags": "Restauración | Pintura a medida"
+    },
+    {
+      "id": "lowrider",
+      "title": "Lowrider a medida",
+      "tags": "Proyecto a medida | Suspensión"
+    },
+    {
+      "id": "engine",
+      "title": "Reconstrucción de motor",
+      "tags": "Motor | Rendimiento"
+    },
+    {
+      "id": "exhaust",
+      "title": "Escape y bajos",
+      "tags": "Rendimiento | Escape a medida"
+    },
+    {
+      "id": "sports",
+      "title": "Servicio para deportivos",
+      "tags": "Mantenimiento | Detallado"
+    }
+  ]
 }

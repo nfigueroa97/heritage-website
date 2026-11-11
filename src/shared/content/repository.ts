@@ -54,6 +54,7 @@ export function mergeContent(saved: unknown): SiteContent {
     },
     services: mergeServices(incoming.services as Service[] | undefined),
     shopServices: defaultContent.shopServices,
+    financing: defaultContent.financing,
     paths: defaultContent.paths.map((path) => {
       const next = incoming.paths?.find((item) => item.id === path.id)
       return next

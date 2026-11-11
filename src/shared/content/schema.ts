@@ -73,6 +73,7 @@ export const contentSchema = z.object({
   paths: z.array(pathSchema),
   projectDetails: z.array(z.object({ icon: z.string(), title: localeSchema })),
   shopServices: z.array(z.object({ label: z.string(), serviceId: z.string() })),
+  financing: z.array(z.object({ id: z.string(), name: z.string(), url: z.string().optional(), logo: z.string().optional() })),
   ratingSummary: z.object({
     score: z.string(),
     count: localeSchema,

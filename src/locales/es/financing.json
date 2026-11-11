@@ -1,0 +1,15 @@
+{
+  "eyebrow": "Conoce nuestras financieras",
+  "badge": "Solicita en línea",
+  "askText": "Pregunta a nuestro equipo por las opciones de financiamiento con {{name}}.",
+  "ask": "Pregunta en el taller",
+  "questions": "¿Dudas sobre el financiamiento?",
+  "questionsText": "Nuestro equipo te ayuda a explorar las opciones disponibles y a encontrar la que mejor se ajuste a ti.",
+  "contact": "Llama a Heritage Auto LV",
+  "disclaimer": "Financiamiento ofrecido por empresas externas. Sujeto a aprobación, elegibilidad y términos de cada proveedor. Las tasas y los pagos pueden variar.",
+  "link": "Financiamiento disponible.",
+  "footer": "Financiamiento disponible con Snap Finance, Koalafi y Sunbit.",
+  "opens": "{{name}} (se abre en una pestaña nueva)",
+  "applyText": "Consulta tus opciones de financiamiento con {{name}}.",
+  "apply": "Solicitar con {{name}}"
+}
