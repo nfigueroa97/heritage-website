@@ -43,13 +43,13 @@ export default function Header({ onSelectService }: { onSelectService: (id: stri
     ...content.services.map((service) => ({
       label: text(service.tab),
       hint: t('search.service'),
-      target: service.id === 'fleet' ? 'fleet' : 'services',
+      target: 'services',
       serviceId: service.id,
     })),
     {
       label: t('search.fleets'),
       hint: t('search.service'),
-      target: 'fleet',
+      target: 'services',
       serviceId: 'fleet',
     },
     ...content.paths.map((path) => ({
